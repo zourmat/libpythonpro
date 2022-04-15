@@ -101,12 +101,12 @@ def find_package_data(
     return out
 
 
-PACKAGE = "libpythonpro"
+PACKAGE = "zourmat-libpythonpro"
 NAME = PACKAGE
 DESCRIPTION = "Módulo para exemplificar construção de projetos Python no curso PyTools"
-AUTHOR = "Renzo Nuccitelli"
-AUTHOR_EMAIL = "renzo@python.pro.br"
-URL = "https://github.com/pythonprobr/libpythonpro"
+AUTHOR = "Matheus Paz Zounar"
+AUTHOR_EMAIL = "matheusmpz@hotmail.com"
+URL = "https://github.com/zourmat/libpythonpro"
 VERSION = __import__(PACKAGE).__version__
 
 setup(
