@@ -36,7 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov=zourmat-libpythonpro
+        pytest libpythonpro --cov=zourmat-libpythonpro
     - name: Relatório Coverage
       env:
         CODECOV_TOKEN: '47105934-f260-464e-a7f1-3691e189afa8'
