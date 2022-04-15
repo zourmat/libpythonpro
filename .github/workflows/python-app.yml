@@ -28,6 +28,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest codecov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc 
+        gpg.exe --import codecov.asc
+
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
+
+        gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
+        If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -36,7 +46,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov=zourmat-lipythonpro
+        pytest --cov=zourmat-libpythonpro
     - name: Relatório Coverage
       env:
         CODECOV_TOKEN: '47105934-f260-464e-a7f1-3691e189afa8'
