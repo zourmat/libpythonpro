@@ -6,6 +6,8 @@ Nesse curso é ensinado como contribuir com projetos de código aberto
 
 Link para o curso [Python Pro](https://www.python.pro.br/)
 
+[![codecov](https://codecov.io/gh/zourmat/libpythonpro/branch/master/graph/badge.svg?token=66MRABP3YQ)](https://codecov.io/gh/zourmat/libpythonpro)
+
 Suportada versão 3 de Python
 
 Para instalar:
