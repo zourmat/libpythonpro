@@ -41,7 +41,7 @@ def test_parametros_de_spam(sessao):
         'Spam enviado',
         'Conferindo o spam'
     )
-    assert enviador.enviar.assert_called_once_with(
+    enviador.enviar.assert_called_once_with(
         'renzo@hotmail.com',
         'matheusmpz@hotmail.com',
         'Spam enviado',
